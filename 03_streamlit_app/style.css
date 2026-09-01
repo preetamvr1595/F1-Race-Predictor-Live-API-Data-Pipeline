@@ -1,0 +1,14 @@
+/* Dark Mode Glassmorphism Theme for Streamlit App */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #0e1117;
+    color: #ffffff;
+}
+
+.stMetric {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
