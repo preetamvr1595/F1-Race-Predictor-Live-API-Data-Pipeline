@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F1 AI Telemetry | Next-Gen Race Predictor</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="brand">
+                <span class="f1-logo-badge">F1 AI</span>
+                <span class="brand-name">RACE TELEMETRY ENGINE</span>
+            </div>
+
+            <nav class="nav-tabs">
+                <button class="nav-tab active" data-tab="predictor">
+                    <i data-lucide="zap"></i> Predictor
+                </button>
+                <button class="nav-tab" data-tab="simulator">
+                    <i data-lucide="flag"></i> Grid Simulator
+                </button>
+                <button class="nav-tab" data-tab="comparison">
+                    <i data-lucide="swords"></i> Driver Duel
+                </button>
+                <button class="nav-tab" data-tab="specs">
+                    <i data-lucide="cpu"></i> Model AI Specs
+                </button>
+            </nav>
+
+            <div class="live-status">
+                <span class="pulse-ring"></span>
+                <span class="status-text">LIVE TELEMETRY</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="app-container">
+
+        <!-- TAB 1: Predictor -->
+        <section id="predictor-tab" class="tab-content active">
+            <div class="hero-banner">
+                <div class="hero-text">
+                    <h1>AI GRAND PRIX RACE PREDICTOR</h1>
+                    <p>Real-time machine learning telemetry powered by 75 years of historical F1 data & Jolpica API</p>
+                </div>
+            </div>
+
+            <div class="grid-layout">
+                <!-- Controls Panel -->
+                <div class="telemetry-card controls-card">
+                    <div class="card-header">
+                        <i data-lucide="sliders" class="icon-red"></i>
+                        <h2>Race Configuration Parameters</h2>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="driver-select">Select Formula 1 Driver</label>
+                        <div class="select-wrapper">
+                            <select id="driver-select" class="custom-select">
+                                <option value="">Loading Drivers...</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="circuit-select">Select Grand Prix Track</label>
+                        <div class="select-wrapper">
+                            <select id="circuit-select" class="custom-select">
+                                <option value="">Loading Circuits...</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="slider-header">
+                            <label for="grid-slider">Qualifying Grid Position</label>
+                            <span id="grid-val-display" class="grid-badge">P1 (Pole)</span>
+                        </div>
+                        <input type="range" id="grid-slider" min="1" max="22" value="1" class="custom-slider">
+                        <div class="grid-markers">
+                            <span>P1</span><span>P5</span><span>P10</span><span>P15</span><span>P22</span>
+                        </div>
+                    </div>
+
+                    <button id="predict-btn" class="btn-primary">
+                        <i data-lucide="play-circle"></i> RUN AI PREDICTION ENGINE
+                    </button>
+                </div>
+
+                <!-- Driver Live Telemetry Overview -->
+                <div class="telemetry-card info-card">
+                    <div class="card-header">
+                        <i data-lucide="user" class="icon-cyan"></i>
+                        <h2>Driver & Constructor Telemetry</h2>
+                    </div>
+
+                    <div id="driver-summary" class="driver-summary-box">
+                        <div class="driver-badge-big">
+                            <span id="summary-flag" class="driver-flag">🇳🇱</span>
+                            <div>
+                                <h3 id="summary-name">Max Verstappen</h3>
+                                <p id="summary-team" class="team-tag">Red Bull Racing 🐂</p>
+                            </div>
+                        </div>
+
+                        <div class="stats-mini-grid">
+                            <div class="stat-tile">
+                                <span class="stat-lbl">SEASON POINTS</span>
+                                <span id="summary-points" class="stat-val">2912.5</span>
+                            </div>
+                            <div class="stat-tile">
+                                <span class="stat-lbl">RECENT FORM</span>
+                                <span id="summary-form" class="stat-val">P1.2</span>
+                            </div>
+                            <div class="stat-tile">
+                                <span class="stat-lbl">DNF RELIABILITY</span>
+                                <span id="summary-dnf" class="stat-val">18.6%</span>
+                            </div>
+                            <div class="stat-tile">
+                                <span class="stat-lbl">CIRCUIT AVG</span>
+                                <span id="summary-track" class="stat-val">P1.5</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prediction Results Section -->
+            <div id="results-section" class="results-container hidden">
+                <div class="section-title">
+                    <i data-lucide="trophy" class="icon-gold"></i>
+                    <h2>AI Model Prediction Results</h2>
+                </div>
+
+                <div class="kpi-grid">
+                    <div class="kpi-card gold-border">
+                        <div class="kpi-lbl">PODIUM LIKELIHOOD</div>
+                        <div id="kpi-podium" class="kpi-val text-gold">94.8%</div>
+                        <div class="kpi-sub">Top 3 Finish Probability</div>
+                    </div>
+                    <div class="kpi-card cyan-border">
+                        <div class="kpi-lbl">RACE WIN PROBABILITY</div>
+                        <div id="kpi-win" class="kpi-val text-cyan">78.2%</div>
+                        <div class="kpi-sub">P1 Victory Chance</div>
+                    </div>
+                    <div class="kpi-card red-border">
+                        <div class="kpi-lbl">PREDICTED FINISH RANK</div>
+                        <div id="kpi-finish" class="kpi-val text-red">P1</div>
+                        <div class="kpi-sub">Expected Classification</div>
+                    </div>
+                </div>
+
+                <div class="charts-grid">
+                    <div class="telemetry-card">
+                        <div class="card-header">
+                            <i data-lucide="pie-chart" class="icon-gold"></i>
+                            <h3>Probability Distribution</h3>
+                        </div>
+                        <div class="chart-box">
+                            <canvas id="gaugeChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="telemetry-card">
+                        <div class="card-header">
+                            <i data-lucide="radar" class="icon-red"></i>
+                            <h3>5-Point Telemetry Radar</h3>
+                        </div>
+                        <div class="chart-box">
+                            <canvas id="radarChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: Grid Simulator -->
+        <section id="simulator-tab" class="tab-content">
+            <div class="hero-banner">
+                <div class="hero-text">
+                    <h1>FULL STARTING GRID SIMULATOR</h1>
+                    <p>Simulate predicted race classifications for all top F1 drivers on any circuit</p>
+                </div>
+            </div>
+
+            <div class="telemetry-card">
+                <div class="sim-controls">
+                    <div class="form-group flex-1">
+                        <label for="sim-circuit-select">Grand Prix Circuit</label>
+                        <div class="select-wrapper">
+                            <select id="sim-circuit-select" class="custom-select"></select>
+                        </div>
+                    </div>
+                    <button id="simulate-btn" class="btn-primary flex-initial">
+                        <i data-lucide="zap"></i> RUN FULL GRID SIMULATION
+                    </button>
+                </div>
+            </div>
+
+            <div id="podium-showcase" class="podium-grid hidden">
+                <div class="podium-card p2-silver">
+                    <div class="podium-rank">🥈 P2</div>
+                    <h3 id="p2-name">Lewis Hamilton</h3>
+                    <p id="p2-team">Mercedes-AMG</p>
+                    <div id="p2-prob" class="podium-prob">Podium: 82.1%</div>
+                </div>
+                <div class="podium-card p1-gold">
+                    <div class="podium-rank">🥇 P1 WINNER</div>
+                    <h2 id="p1-name">Max Verstappen</h2>
+                    <p id="p1-team">Red Bull Racing</p>
+                    <div id="p1-prob" class="podium-prob">Win Chance: 88.5%</div>
+                </div>
+                <div class="podium-card p3-bronze">
+                    <div class="podium-rank">🥉 P3</div>
+                    <h3 id="p3-name">Charles Leclerc</h3>
+                    <p id="p3-team">Scuderia Ferrari</p>
+                    <div id="p3-prob" class="podium-prob">Podium: 74.3%</div>
+                </div>
+            </div>
+
+            <div id="leaderboard-section" class="telemetry-card hidden">
+                <div class="card-header">
+                    <i data-lucide="list-ordered" class="icon-red"></i>
+                    <h3>Predicted Race Classification Leaderboard</h3>
+                </div>
+                <div class="table-responsive">
+                    <table class="telemetry-table">
+                        <thead>
+                            <tr>
+                                <th>Predicted Rank</th>
+                                <th>Driver</th>
+                                <th>Team</th>
+                                <th>Start Grid</th>
+                                <th>Podium Prob</th>
+                                <th>Win Prob</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboard-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: Driver Duel -->
+        <section id="comparison-tab" class="tab-content">
+            <div class="hero-banner">
+                <div class="hero-text">
+                    <h1>HEAD-TO-HEAD DRIVER DUEL</h1>
+                    <p>Compare performance metrics and telemetry between any two F1 drivers</p>
+                </div>
+            </div>
+
+            <div class="duel-pickers">
+                <div class="form-group">
+                    <label>Driver A (Red Corner)</label>
+                    <select id="duel-d1" class="custom-select"></select>
+                </div>
+                <div class="versus-badge">VS</div>
+                <div class="form-group">
+                    <label>Driver B (Cyan Corner)</label>
+                    <select id="duel-d2" class="custom-select"></select>
+                </div>
+            </div>
+
+            <div class="telemetry-card">
+                <div class="card-header">
+                    <i data-lucide="bar-chart-2" class="icon-cyan"></i>
+                    <h3>Head-to-Head Telemetry Comparison</h3>
+                </div>
+                <div class="chart-box-large">
+                    <canvas id="comparisonChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: Model AI Specs -->
+        <section id="specs-tab" class="tab-content">
+            <div class="hero-banner">
+                <div class="hero-text">
+                    <h1>MACHINE LEARNING MODEL ARCHITECTURE</h1>
+                    <p>Trained on 15 seasons of historical Ergast data & live Jolpica-F1 API snapshots</p>
+                </div>
+            </div>
+
+            <div class="kpi-grid">
+                <div class="kpi-card green-border">
+                    <div class="kpi-lbl">PODIUM CLASSIFIER ROC-AUC</div>
+                    <div class="kpi-val text-green">0.924</div>
+                    <div class="kpi-sub">Validated on 2023-2024 Held-out Seasons</div>
+                </div>
+                <div class="kpi-card cyan-border">
+                    <div class="kpi-lbl">RACE WINNER ROC-AUC</div>
+                    <div class="kpi-val text-cyan">0.960</div>
+                    <div class="kpi-sub">Gradient Boosting Classifier</div>
+                </div>
+                <div class="kpi-card gold-border">
+                    <div class="kpi-lbl">POSITION REGRESSOR MAE</div>
+                    <div class="kpi-val text-gold">3.14 Pos</div>
+                    <div class="kpi-sub">Vs. 3.60 Naive Grid Baseline</div>
+                </div>
+            </div>
+
+            <div class="telemetry-card margin-top">
+                <div class="card-header">
+                    <i data-lucide="git-branch" class="icon-red"></i>
+                    <h3>Data Pipeline Architecture</h3>
+                </div>
+                <div class="pipeline-steps">
+                    <div class="pipe-step">
+                        <div class="step-num">1</div>
+                        <h4>Bulk Historical Pull</h4>
+                        <p>1950-2024 Ergast-derived historical CSV dataset mirror.</p>
+                    </div>
+                    <div class="pipe-step">
+                        <div class="step-num">2</div>
+                        <h4>Live API Ingestion</h4>
+                        <p>Real-time Jolpica-F1 API polling for 2025-2026 season data.</p>
+                    </div>
+                    <div class="pipe-step">
+                        <div class="step-num">3</div>
+                        <h4>Feature Engineering</h4>
+                        <p>Rolling 10-race form, team pace, circuit history & DNF rate.</p>
+                    </div>
+                    <div class="pipe-step">
+                        <div class="step-num">4</div>
+                        <h4>Scikit-learn Ensemble</h4>
+                        <p>Gradient Boosting models for podium, win, and exact position.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>🏎️ F1 AI Race Predictor & Telemetry Engine • Powered by FastAPI, Scikit-learn & Chart.js</p>
+    </footer>
+
+    <!-- Custom App JavaScript -->
+    <script src="/static/app.js"></script>
+</body>
+</html>
