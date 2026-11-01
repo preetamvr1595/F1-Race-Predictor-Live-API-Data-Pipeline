@@ -63,27 +63,27 @@ DRIVER_META = {
 }
 
 CIRCUIT_META = {
-    "monaco": {"name": "Circuit de Monaco", "location": "Monte Carlo 🇲🇨", "laps": 78},
-    "silverstone": {"name": "Silverstone Circuit", "location": "Great Britain 🇬🇧", "laps": 52},
-    "monza": {"name": "Autodromo Nazionale Monza", "location": "Italy 🇮🇹", "laps": 53},
-    "spa": {"name": "Circuit de Spa-Francorchamps", "location": "Belgium 🇧🇪", "laps": 44},
-    "red_bull_ring": {"name": "Red Bull Ring", "location": "Austria 🇦🇹", "laps": 71},
-    "suzuka": {"name": "Suzuka International Course", "location": "Japan 🇯🇵", "laps": 53},
-    "americas": {"name": "Circuit of the Americas", "location": "Austin 🇺🇸", "laps": 56},
-    "interlagos": {"name": "Autódromo José Carlos Pace", "location": "Brazil 🇧🇷", "laps": 71},
-    "shanghai": {"name": "Shanghai International Circuit", "location": "China 🇨🇳", "laps": 56},
-    "catalunya": {"name": "Circuit de Barcelona-Catalunya", "location": "Spain 🇪🇸", "laps": 66},
-    "zandvoort": {"name": "Circuit Zandvoort", "location": "Netherlands 🇳🇱", "laps": 72},
-    "baku": {"name": "Baku City Circuit", "location": "Azerbaijan 🇦🇿", "laps": 51},
-    "marina_bay": {"name": "Marina Bay Street Circuit", "location": "Singapore 🇸🇬", "laps": 62},
-    "yas_marina": {"name": "Yas Marina Circuit", "location": "Abu Dhabi 🇦🇪", "laps": 58},
-    "hungaroring": {"name": "Hungaroring", "location": "Hungary 🇭🇺", "laps": 70},
-    "bahrain": {"name": "Bahrain International Circuit", "location": "Bahrain 🇧🇭", "laps": 57},
-    "jeddah": {"name": "Jeddah Corniche Circuit", "location": "Saudi Arabia 🇸🇦", "laps": 50},
-    "albert_park": {"name": "Albert Park Circuit", "location": "Australia 🇦🇺", "laps": 58},
-    "miami": {"name": "Miami International Autodrome", "location": "USA 🇺🇸", "laps": 57},
-    "losail": {"name": "Lusail International Circuit", "location": "Qatar 🇶🇦", "laps": 57},
-    "vegas": {"name": "Las Vegas Strip Circuit", "location": "USA 🇺🇸", "laps": 50},
+    "monaco": {"name": "Circuit de Monaco", "location": "Monte Carlo 🇲🇨", "laps": 78, "lat": 43.7347, "lng": 7.4206},
+    "silverstone": {"name": "Silverstone Circuit", "location": "Great Britain 🇬🇧", "laps": 52, "lat": 52.0786, "lng": -1.0169},
+    "monza": {"name": "Autodromo Nazionale Monza", "location": "Italy 🇮🇹", "laps": 53, "lat": 45.6156, "lng": 9.2811},
+    "spa": {"name": "Circuit de Spa-Francorchamps", "location": "Belgium 🇧🇪", "laps": 44, "lat": 50.4372, "lng": 5.9714},
+    "red_bull_ring": {"name": "Red Bull Ring", "location": "Austria 🇦🇹", "laps": 71, "lat": 47.2197, "lng": 14.7647},
+    "suzuka": {"name": "Suzuka International Course", "location": "Japan 🇯🇵", "laps": 53, "lat": 34.8431, "lng": 136.5410},
+    "americas": {"name": "Circuit of the Americas", "location": "Austin 🇺🇸", "laps": 56, "lat": 30.1328, "lng": -97.6411},
+    "interlagos": {"name": "Autódromo José Carlos Pace", "location": "Brazil 🇧🇷", "laps": 71, "lat": -23.7036, "lng": -46.6997},
+    "shanghai": {"name": "Shanghai International Circuit", "location": "China 🇨🇳", "laps": 56, "lat": 31.3389, "lng": 121.2200},
+    "catalunya": {"name": "Circuit de Barcelona-Catalunya", "location": "Spain 🇪🇸", "laps": 66, "lat": 41.5700, "lng": 2.2611},
+    "zandvoort": {"name": "Circuit Zandvoort", "location": "Netherlands 🇳🇱", "laps": 72, "lat": 52.3888, "lng": 4.5409},
+    "baku": {"name": "Baku City Circuit", "location": "Azerbaijan 🇦🇿", "laps": 51, "lat": 40.3725, "lng": 49.8533},
+    "marina_bay": {"name": "Marina Bay Street Circuit", "location": "Singapore 🇸🇬", "laps": 62, "lat": 1.2915, "lng": 103.8639},
+    "yas_marina": {"name": "Yas Marina Circuit", "location": "Abu Dhabi 🇦🇪", "laps": 58, "lat": 24.4672, "lng": 54.6031},
+    "hungaroring": {"name": "Hungaroring", "location": "Hungary 🇭🇺", "laps": 70, "lat": 47.5830, "lng": 19.2486},
+    "bahrain": {"name": "Bahrain International Circuit", "location": "Bahrain 🇧🇭", "laps": 57, "lat": 26.0325, "lng": 50.5106},
+    "jeddah": {"name": "Jeddah Corniche Circuit", "location": "Saudi Arabia 🇸🇦", "laps": 50, "lat": 21.6319, "lng": 39.1044},
+    "albert_park": {"name": "Albert Park Circuit", "location": "Australia 🇦🇺", "laps": 58, "lat": -37.8497, "lng": 144.9680},
+    "miami": {"name": "Miami International Autodrome", "location": "USA 🇺🇸", "laps": 57, "lat": 25.9581, "lng": -80.2389},
+    "losail": {"name": "Lusail International Circuit", "location": "Qatar 🇶🇦", "laps": 57, "lat": 25.4900, "lng": 51.4542},
+    "vegas": {"name": "Las Vegas Strip Circuit", "location": "USA 🇺🇸", "laps": 50, "lat": 36.1147, "lng": -115.1728},
 }
 
 
@@ -132,13 +132,17 @@ def get_circuits():
         meta = CIRCUIT_META.get(c_id, {
             "name": c_id.replace("_", " ").title(),
             "location": "Grand Prix Track 🏁",
-            "laps": 55
+            "laps": 55,
+            "lat": 20.0,
+            "lng": 0.0
         })
         circuits_data.append({
             "id": c_id,
             "name": meta["name"],
             "location": meta["location"],
-            "laps": meta["laps"]
+            "laps": meta["laps"],
+            "lat": meta.get("lat", 20.0),
+            "lng": meta.get("lng", 0.0)
         })
     return circuits_data
 
