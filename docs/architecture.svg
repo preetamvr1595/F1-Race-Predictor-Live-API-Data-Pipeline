@@ -1,0 +1,127 @@
+﻿<svg viewBox="0 0 1200 750" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a1a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0d0f2b;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e80020;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#b0001a;stop-opacity:0.9" />
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a3a7a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0d2255;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700;stop-opacity:0.95" />
+      <stop offset="100%" style="stop-color:#c8a000;stop-opacity:0.95" />
+    </linearGradient>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#3671C6"/>
+    </marker>
+    <marker id="arrowWhite" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#aaa"/>
+    </marker>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="750" fill="url(#bgGrad)"/>
+  <rect x="300" y="10" width="600" height="52" rx="10" fill="#e80020" opacity="0.15" stroke="#e80020" stroke-width="1.5"/>
+  <text x="600" y="30" text-anchor="middle" fill="#e80020" font-size="11" font-weight="bold" letter-spacing="3">SYSTEM ARCHITECTURE</text>
+  <text x="600" y="52" text-anchor="middle" fill="white" font-size="18" font-weight="bold">F1 AI Telemetry and Race Predictor</text>
+  <text x="600" y="88" text-anchor="middle" fill="#aaa" font-size="11" letter-spacing="2">DATA SOURCES</text>
+  <rect x="40" y="95" width="300" height="80" rx="10" fill="#1a3a7a" stroke="#3671C6" stroke-width="2" filter="url(#shadow)"/>
+  <text x="190" y="125" text-anchor="middle" fill="white" font-size="13" font-weight="bold">Jolpica-F1 Live REST API</text>
+  <text x="190" y="145" text-anchor="middle" fill="#88aadd" font-size="11">Real-time race data and standings</text>
+  <text x="190" y="161" text-anchor="middle" fill="#88aadd" font-size="11">ergast.jolpi.ca/ergast/f1/</text>
+  <rect x="450" y="95" width="300" height="80" rx="10" fill="#4a1da8" stroke="#6B2DE8" stroke-width="2" filter="url(#shadow)"/>
+  <text x="600" y="125" text-anchor="middle" fill="white" font-size="13" font-weight="bold">Historical F1 Data 1950-2026</text>
+  <text x="600" y="145" text-anchor="middle" fill="#bb99ff" font-size="11">75 years of Grand Prix telemetry</text>
+  <text x="600" y="161" text-anchor="middle" fill="#bb99ff" font-size="11">master_dataset.csv and races.csv</text>
+  <rect x="860" y="95" width="300" height="80" rx="10" fill="#006b45" stroke="#00a86b" stroke-width="2" filter="url(#shadow)"/>
+  <text x="1010" y="125" text-anchor="middle" fill="white" font-size="13" font-weight="bold">Static Feature Datasets</text>
+  <text x="1010" y="145" text-anchor="middle" fill="#99ddbb" font-size="11">Circuit, Driver, Team Stats CSV</text>
+  <text x="1010" y="161" text-anchor="middle" fill="#99ddbb" font-size="11">latest_*_stats.csv</text>
+  <line x1="190" y1="175" x2="190" y2="215" stroke="#3671C6" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <line x1="600" y1="175" x2="600" y2="215" stroke="#6B2DE8" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <line x1="1010" y1="175" x2="1010" y2="215" stroke="#00a86b" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <text x="600" y="210" text-anchor="middle" fill="#aaa" font-size="11" letter-spacing="2">DATA INGESTION AND FEATURE ENGINEERING</text>
+  <rect x="120" y="218" width="340" height="80" rx="10" fill="#111830" stroke="#3671C6" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="290" y="244" text-anchor="middle" fill="white" font-size="13" font-weight="bold">Data Ingestion and Validation</text>
+  <text x="290" y="262" text-anchor="middle" fill="#88aadd" font-size="10.5">src/api_client.py and src/data_loader.py</text>
+  <text x="290" y="278" text-anchor="middle" fill="#88aadd" font-size="10.5">Null checks, schema validation, caching</text>
+  <rect x="740" y="218" width="340" height="80" rx="10" fill="#111830" stroke="#6B2DE8" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="910" y="244" text-anchor="middle" fill="white" font-size="13" font-weight="bold">Feature Engineering Pipeline</text>
+  <text x="910" y="262" text-anchor="middle" fill="#bb99ff" font-size="10.5">circuit, driver, reliability, team features</text>
+  <text x="910" y="278" text-anchor="middle" fill="#bb99ff" font-size="10.5">src/preprocessor.py and src/features/</text>
+  <line x1="460" y1="258" x2="740" y2="258" stroke="#555" stroke-width="1.5" marker-end="url(#arrowWhite)" stroke-dasharray="6,3"/>
+  <line x1="290" y1="298" x2="290" y2="340" stroke="#3671C6" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <line x1="600" y1="248" x2="600" y2="340" stroke="#e80020" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <line x1="910" y1="298" x2="910" y2="340" stroke="#6B2DE8" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <text x="600" y="335" text-anchor="middle" fill="#aaa" font-size="11" letter-spacing="2">SCIKIT-LEARN GRADIENT BOOSTING ML MODELS</text>
+  <rect x="40" y="345" width="330" height="110" rx="12" fill="#1a0a0f" stroke="#e80020" stroke-width="2.5" filter="url(#shadow)"/>
+  <rect x="40" y="345" width="330" height="8" rx="12" fill="#e80020"/>
+  <text x="205" y="375" text-anchor="middle" fill="#e80020" font-size="11" font-weight="bold" letter-spacing="2">PODIUM CLASSIFIER</text>
+  <text x="205" y="396" text-anchor="middle" fill="white" font-size="14" font-weight="bold">Gradient Boosting</text>
+  <text x="205" y="414" text-anchor="middle" fill="#aaa" font-size="11">Target: Top-3 Finish Prediction</text>
+  <rect x="95" y="420" width="220" height="28" rx="6" fill="#e80020" opacity="0.2"/>
+  <text x="205" y="439" text-anchor="middle" fill="#ff6680" font-size="12" font-weight="bold">ROC-AUC: 0.924 | Acc: 89.4%</text>
+  <rect x="435" y="345" width="330" height="110" rx="12" fill="#1a1600" stroke="#ffd700" stroke-width="2.5" filter="url(#shadow)"/>
+  <rect x="435" y="345" width="330" height="8" rx="12" fill="#ffd700"/>
+  <text x="600" y="375" text-anchor="middle" fill="#ffd700" font-size="11" font-weight="bold" letter-spacing="2">WINNER CLASSIFIER</text>
+  <text x="600" y="396" text-anchor="middle" fill="white" font-size="14" font-weight="bold">Gradient Boosting</text>
+  <text x="600" y="414" text-anchor="middle" fill="#aaa" font-size="11">Target: Race 1st Place Winner</text>
+  <rect x="490" y="420" width="220" height="28" rx="6" fill="#ffd700" opacity="0.2"/>
+  <text x="600" y="439" text-anchor="middle" fill="#ffe566" font-size="12" font-weight="bold">ROC-AUC: 0.960 | Acc: 95.7%</text>
+  <rect x="830" y="345" width="330" height="110" rx="12" fill="#0a1020" stroke="#3671C6" stroke-width="2.5" filter="url(#shadow)"/>
+  <rect x="830" y="345" width="330" height="8" rx="12" fill="#1a3a7a"/>
+  <text x="995" y="375" text-anchor="middle" fill="#3691f6" font-size="11" font-weight="bold" letter-spacing="2">POSITION REGRESSOR</text>
+  <text x="995" y="396" text-anchor="middle" fill="white" font-size="14" font-weight="bold">Gradient Boosting</text>
+  <text x="995" y="414" text-anchor="middle" fill="#aaa" font-size="11">Target: Exact Finish Position</text>
+  <rect x="885" y="420" width="220" height="28" rx="6" fill="#3671C6" opacity="0.2"/>
+  <text x="995" y="439" text-anchor="middle" fill="#88aaff" font-size="12" font-weight="bold">MAE: 3.14 positions</text>
+  <line x1="205" y1="455" x2="205" y2="495" stroke="#e80020" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <line x1="600" y1="455" x2="600" y2="495" stroke="#ffd700" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <line x1="995" y1="455" x2="995" y2="495" stroke="#3671C6" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <text x="600" y="490" text-anchor="middle" fill="#aaa" font-size="11" letter-spacing="2">APPLICATION SERVING LAYER</text>
+  <rect x="40" y="498" width="520" height="100" rx="12" fill="#0d1f1a" stroke="#00a86b" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="40" y="498" width="520" height="6" rx="12" fill="#00a86b"/>
+  <text x="65" y="524" fill="white" font-size="13" font-weight="bold">FastAPI REST Backend (main.py)</text>
+  <text x="65" y="542" fill="#88ddaa" font-size="11">GET /  POST /predict  POST /grid-simulation</text>
+  <text x="65" y="558" fill="#88ddaa" font-size="11">GET /circuits  GET /drivers  GET /teams</text>
+  <text x="65" y="574" fill="#88ddaa" font-size="11">Pydantic v2 validation, Swagger UI, Auto-docs</text>
+  <rect x="640" y="498" width="520" height="100" rx="12" fill="#1a0d0d" stroke="#FF4B4B" stroke-width="2" filter="url(#shadow)"/>
+  <rect x="640" y="498" width="520" height="6" rx="12" fill="#FF4B4B"/>
+  <text x="665" y="524" fill="white" font-size="13" font-weight="bold">Streamlit Telemetry Dashboard (app.py)</text>
+  <text x="665" y="542" fill="#ffaaaa" font-size="11">Live Race Predictions, Driver Comparison</text>
+  <text x="665" y="558" fill="#ffaaaa" font-size="11">Interactive Grid Simulator, Circuit Analysis</text>
+  <text x="665" y="574" fill="#ffaaaa" font-size="11">Custom glassmorphism UI, Chart.js Radar</text>
+  <line x1="300" y1="598" x2="300" y2="640" stroke="#aaa" stroke-width="2" marker-end="url(#arrowWhite)"/>
+  <line x1="900" y1="598" x2="900" y2="640" stroke="#aaa" stroke-width="2" marker-end="url(#arrowWhite)"/>
+  <text x="600" y="635" text-anchor="middle" fill="#aaa" font-size="11" letter-spacing="2">DEPLOYMENT AND CI/CD</text>
+  <rect x="40" y="645" width="220" height="80" rx="10" fill="#0a1520" stroke="#2496ED" stroke-width="2"/>
+  <rect x="40" y="645" width="220" height="5" rx="10" fill="#2496ED"/>
+  <text x="150" y="672" text-anchor="middle" fill="white" font-size="13" font-weight="bold">Docker</text>
+  <text x="150" y="690" text-anchor="middle" fill="#88aadd" font-size="11">Dockerfile</text>
+  <text x="150" y="706" text-anchor="middle" fill="#88aadd" font-size="11">docker-compose.yml</text>
+  <rect x="290" y="645" width="220" height="80" rx="10" fill="#0d1a0d" stroke="#00c45e" stroke-width="2"/>
+  <rect x="290" y="645" width="220" height="5" rx="10" fill="#00c45e"/>
+  <text x="400" y="672" text-anchor="middle" fill="white" font-size="13" font-weight="bold">Render Cloud</text>
+  <text x="400" y="690" text-anchor="middle" fill="#99ddaa" font-size="11">render.yaml IaC Blueprint</text>
+  <text x="400" y="706" text-anchor="middle" fill="#99ddaa" font-size="11">Auto-deploy on push</text>
+  <rect x="540" y="645" width="280" height="80" rx="10" fill="#12101a" stroke="#6B2DE8" stroke-width="2"/>
+  <rect x="540" y="645" width="280" height="5" rx="10" fill="#6B2DE8"/>
+  <text x="680" y="672" text-anchor="middle" fill="white" font-size="13" font-weight="bold">GitHub Actions CI/CD</text>
+  <text x="680" y="690" text-anchor="middle" fill="#bb99ff" font-size="11">lint.yml and test.yml</text>
+  <text x="680" y="706" text-anchor="middle" fill="#bb99ff" font-size="11">flake8, black, pytest</text>
+  <rect x="850" y="645" width="310" height="80" rx="10" fill="#1a1200" stroke="#ffd700" stroke-width="2"/>
+  <rect x="850" y="645" width="310" height="5" rx="10" fill="#ffd700"/>
+  <text x="1005" y="672" text-anchor="middle" fill="white" font-size="13" font-weight="bold">Live Production URL</text>
+  <text x="1005" y="690" text-anchor="middle" fill="#ffdd88" font-size="10">f1-race-predictor-live-api-</text>
+  <text x="1005" y="706" text-anchor="middle" fill="#ffdd88" font-size="10">data-pipeline.onrender.com</text>
+  <line x1="260" y1="685" x2="290" y2="685" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowWhite)"/>
+  <line x1="510" y1="685" x2="540" y2="685" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowWhite)"/>
+  <line x1="820" y1="685" x2="850" y2="685" stroke="#aaa" stroke-width="1.5" marker-end="url(#arrowWhite)"/>
+  <text x="600" y="742" text-anchor="middle" fill="#555" font-size="10">2024-2026 Preetham VR - MIT License - github.com/preetamvr1595/F1-Race-Predictor-Live-API-Data-Pipeline</text>
+</svg>
